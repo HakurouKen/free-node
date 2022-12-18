@@ -1,0 +1,34 @@
+name: Free Node Update
+
+on:
+  schedule:
+    - cron: '0 */8 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 7
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
+    - name: Generate public nodes
+      run: node index.mjs
+    - name: commit
+      run: |
+        git config --global user.email github-actions-bot@github.com
+        git config --global user.name "github-actions-bot"
+        git add .
+        git commit -am "Auto Update by Action"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
