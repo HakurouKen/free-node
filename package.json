@@ -16,7 +16,6 @@
     "prettier": "^2.8.1"
   },
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "ping": "^0.4.2"
+    "dotenv": "^16.0.3"
   }
 }

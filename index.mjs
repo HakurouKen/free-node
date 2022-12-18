@@ -1,8 +1,6 @@
 import * as dotenv from 'dotenv';
 import { writeFile } from 'node:fs/promises';
-import { isIPv6 } from 'net';
 import fetch from 'node-fetch';
-import ping from 'ping';
 
 dotenv.config();
 
@@ -55,18 +53,8 @@ const formatter = {
     } catch (e) {
       return null;
     }
-    const pingResult = await ping.promise.probe(data.add, {
-      timeout: isIPv6(data.add) ? false : 0.5,
-      extra: ['-c', 1]
-    });
-    if (pingResult.alive) {
-      data.ps = nameFormatter(data.ps);
-      return `vmess://${Buffer.from(JSON.stringify(data)).toString('base64')}`;
-    } else {
-      console.error('node ping timeout: ', data.id, data.ps);
-      console.error('Ping timeout output detail:', pingResult.output);
-      return null;
-    }
+    data.ps = nameFormatter(data.ps);
+    return `vmess://${Buffer.from(JSON.stringify(data)).toString('base64')}`;
   },
   async trojan(line, nameFormatter) {
     const url = new URL(line);

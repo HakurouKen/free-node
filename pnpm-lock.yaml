@@ -3,12 +3,10 @@ lockfileVersion: 5.4
 specifiers:
   dotenv: ^16.0.3
   node-fetch: ^3.3.0
-  ping: ^0.4.2
   prettier: ^2.8.1
 
 dependencies:
   dotenv: 16.0.3
-  ping: 0.4.2
 
 devDependencies:
   node-fetch: 3.3.0
@@ -55,28 +53,11 @@ packages:
       formdata-polyfill: 4.0.10
     dev: true
 
-  /ping/0.4.2:
-    resolution: {integrity: sha512-1uAw0bzHtrPbPo2s6no06oZAzY6KqKclEJR1JRZKIHKXKlPdrz9N0/1MPPB+BbrvMjN3Mk0pcod3bfLNZFRo9w==}
-    engines: {node: '>=4.0.0'}
-    dependencies:
-      q: 1.5.1
-      underscore: 1.13.6
-    dev: false
-
   /prettier/2.8.1:
     resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
-
-  /q/1.5.1:
-    resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
-    engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
-    dev: false
-
-  /underscore/1.13.6:
-    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==}
-    dev: false
 
   /web-streams-polyfill/3.2.1:
     resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
