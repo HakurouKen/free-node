@@ -1,0 +1,22 @@
+{
+  "name": "@leroy/free-node",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "V2Ray Free Nodes.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier -w index.mjs"
+  },
+  "keywords": [],
+  "author": "HakurouKen",
+  "license": "MIT",
+  "devDependencies": {
+    "node-fetch": "^3.3.0",
+    "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ping": "^0.4.2"
+  }
+}
