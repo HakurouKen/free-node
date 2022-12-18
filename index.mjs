@@ -64,6 +64,7 @@ const formatter = {
       return `vmess://${Buffer.from(JSON.stringify(data)).toString('base64')}`;
     } else {
       console.error('node ping timeout: ', data.id, data.ps);
+      console.error('Ping timeout output detail:', pingResult.output);
       return null;
     }
   },
