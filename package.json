@@ -16,6 +16,7 @@
     "prettier": "^2.8.1"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "is-valid-hostname": "^1.0.2"
   }
 }

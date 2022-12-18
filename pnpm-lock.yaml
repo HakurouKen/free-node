@@ -2,11 +2,13 @@ lockfileVersion: 5.4
 
 specifiers:
   dotenv: ^16.0.3
+  is-valid-hostname: ^1.0.2
   node-fetch: ^3.3.0
   prettier: ^2.8.1
 
 dependencies:
   dotenv: 16.0.3
+  is-valid-hostname: 1.0.2
 
 devDependencies:
   node-fetch: 3.3.0
@@ -38,6 +40,10 @@ packages:
     dependencies:
       fetch-blob: 3.2.0
     dev: true
+
+  /is-valid-hostname/1.0.2:
+    resolution: {integrity: sha512-X/kiF3Xndj6WI7l/yLyzR7V1IbQd6L4S4cewSL0fRciemPmHbaXIKR2qtf+zseH+lbMG0vFp4HvCUe7amGZVhw==}
+    dev: false
 
   /node-domexception/1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}

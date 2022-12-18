@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import { writeFile } from 'node:fs/promises';
 import fetch from 'node-fetch';
+import isValidHostname from 'is-valid-hostname';
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ const publicCollections = [
     url: 'https://jiang.netlify.app/',
     base64: true,
     nameFormatter(s) {
-      return s.replace('#二爷翻墙网 https://1808.ga', '[1808.ga]').trim();
+      return s.replace('二爷翻墙网 https://1808.ga', '[1808.ga]').trim();
     }
   },
   {
@@ -53,13 +54,17 @@ const formatter = {
     } catch (e) {
       return null;
     }
+    console.log(data.add, isValidHostname(data.add));
+    if (!isValidHostname(data.add)) {
+      return null;
+    }
     data.ps = nameFormatter(data.ps);
     return `vmess://${Buffer.from(JSON.stringify(data)).toString('base64')}`;
   },
   async trojan(line, nameFormatter) {
     const url = new URL(line);
-    const hash = decodeURIComponent(url.hash);
-    url.hash = nameFormatter(hash);
+    const hash = decodeURIComponent(url.hash).slice(1);
+    url.hash = `#${encodeURIComponent(nameFormatter(hash))}`;
     return url.href;
   },
   async ss(line, nameFormatter) {
