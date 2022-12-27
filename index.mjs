@@ -1,9 +1,12 @@
 import * as dotenv from 'dotenv';
+import _debug from 'debug';
 import { writeFile } from 'node:fs/promises';
 import fetch from 'node-fetch';
 import isValidHostname from 'is-valid-hostname';
 
 dotenv.config();
+
+const debug = _debug('free-node');
 
 const publicCollections = [
   {
@@ -27,6 +30,23 @@ const publicCollections = [
     url: 'https://www.butnono.com/wp-content/uploads/2020/06/v2ray%E9%80%9A%E7%94%A8vmess%E8%8A%82%E7%82%B9.txt',
     nameFormatter(s) {
       return s.replace(/-付费推荐(?:.*)$/, '');
+    }
+  },
+  {
+    name: 'nodefree',
+    get url() {
+      const getDigits = (n, digit = 2) => n.toString().padStart(digit, '0');
+
+      const t = new Date(Date.now() - 14 * 60 * 60 * 1000);
+      const year = t.getFullYear();
+      const month = getDigits(t.getMonth() + 1);
+      const date = getDigits(t.getDate());
+
+      return `https://nodefree.org/dy/${year}${month}/${year}${month}${date}.txt`;
+    },
+    base64: true,
+    nameFormatter(s) {
+      return `[nodefree]${s}`;
     }
   }
 ];
@@ -54,7 +74,6 @@ const formatter = {
     } catch (e) {
       return null;
     }
-    console.log(data.add, isValidHostname(data.add));
     if (!isValidHostname(data.add)) {
       return null;
     }
@@ -69,7 +88,8 @@ const formatter = {
   },
   async ss(line, nameFormatter) {
     const [u, hash] = line.split('#');
-    const formatted = nameFormatter(decodeURIComponent(hash));
+    const decodedHash = decodeURIComponent(hash);
+    const formatted = nameFormatter(decodedHash);
     return `${u}#${encodeURIComponent(formatted)}`;
   }
 };
@@ -93,6 +113,7 @@ async function fetchNodeCollections(collections) {
   const results = [];
   for (const collection of collections) {
     const { url, base64 = false } = collection;
+    debug('collection: ', url);
     let response;
     try {
       response = await retryFetch(url, 3);
@@ -106,6 +127,7 @@ async function fetchNodeCollections(collections) {
     for (const line of lines) {
       const protocol = line.match(/^(vmess|trojan|ss):\/\//)?.[1];
       if (formatter[protocol]) {
+        debug('line:', line);
         const url = await formatter[protocol](
           line,
           collection.nameFormatter || ((s) => s)

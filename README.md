@@ -2,13 +2,16 @@
 
 V2Ray 免费节点合集。
 
+## 订阅节点
+
+https://raw.fastgit.org/HakurouKen/free-node/main/public
+
 ## 节点来源
 
 - https://github.com/freefq/free
 - https://1808.ga/
 - https://www.butnono.com/daily-vmess.html
-- <del>https://freenode.me/</del>
-- <del>https://nodefree.org/</del>
+- https://nodefree.org/
 
 ## 其它免费节点
 
