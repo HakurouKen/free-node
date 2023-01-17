@@ -4,9 +4,10 @@
   "type": "module",
   "version": "1.0.0",
   "description": "V2Ray Free Nodes.",
-  "main": "index.js",
+  "main": "lib/index.mjs",
   "scripts": {
-    "format": "prettier -w index.mjs"
+    "format": "prettier -w lib/**/*.mjs",
+    "generate": "node lib/index.mjs"
   },
   "keywords": [],
   "author": "HakurouKen",
