@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: pnpm install
     - name: Generate public nodes
-      run: pnpm run generate 
+      run: DEBUG=free-node pnpm run generate 
     - name: commit
       run: |
         git config --global user.email github-actions-bot@github.com
